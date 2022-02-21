@@ -42,10 +42,9 @@ class Directory extends React.Component {
                 }
               ]
         }
-    }
+    };
 
-    render(){
-        
+    render(){ 
         return(
             <div className='directory-menu'>
                 {
@@ -54,8 +53,8 @@ class Directory extends React.Component {
                     ))
                 }
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 export default Directory;

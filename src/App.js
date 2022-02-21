@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import HomePage from './pages/hompage/homepage.component';
-import {Routes, Route } from 'react-router-dom';
-import HatsComponent from './components/hats/hats.component';
+import HomePage from './pages/homepage/homepage.component';
+import { Routes, Route } from 'react-router-dom';
+import ShopPage from './pages/shop/shop.components';
 
 
 
@@ -11,10 +11,8 @@ function App() {
   return (
     <div className="App">
      <Routes>
-      <Route exact path='/' element={<HomePage />} />
-      <Route exact path='shop/hats' element={<HatsComponent />} />
-      
-      
+      <Route path='/' element={<HomePage />} />
+      <Route path='/shop' element={<ShopPage />} />
      </Routes>
     </div>
   );
