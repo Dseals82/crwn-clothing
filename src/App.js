@@ -9,9 +9,6 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 
 
-
-
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -22,12 +19,14 @@ class App extends React.Component {
 
   unsubscribeFromAuth = null;
 
+  //onAuthStateChanged is a method that allows us to know when there is state change of the user in firbase project
+  //its an open messaging system between our app and firebase.  Whenever user updates - sign in/signout- we are given that user
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
 
       if (userAuth){
         const userRef = await createUserProfileDocument(userAuth);
-
+//Attaches a listener for DocumentSnapshot events. 
         userRef.onSnapshot(snapShot => {
           this.setState({
             currentUser: {
@@ -38,13 +37,14 @@ class App extends React.Component {
             console.log(this.state)
           })
         });
-      }
-     this.setState({
-       currentUser: userAuth
-     })
+      } else {
+        this.setState({
+          currentUser: userAuth
+        })
+      }   
     });
   }
-
+//unsubscribe when component unmounts to prevent memory leaks
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
